@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Transforme Uma Infância (T.U.I.) — campanha de doação de brinquedos relacionada à ODS 1, em Itaquaquecetuba-SP.">
+<title>Transforme Uma Infância | T.U.I.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root{
+  --bg:#f4fbff; --ink:#30445b; --muted:#66788b; --blue:#8bd3ff;
+  --blue2:#bfe9ff; --mint:#b9f0dc; --yellow:#ffe9a8; --pink:#ffd1df;
+  --white:rgba(255,255,255,.58); --border:rgba(255,255,255,.85);
+  --shadow:0 20px 60px rgba(91,131,155,.17);
+}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{
+ margin:0; color:var(--ink); font-family:Poppins,Arial,sans-serif;
+ background:
+ radial-gradient(circle at 10% 10%, #dff5ff 0 16%, transparent 35%),
+ radial-gradient(circle at 90% 15%, #fff1c9 0 14%, transparent 34%),
+ radial-gradient(circle at 80% 90%, #d9f8ea 0 15%, transparent 36%), var(--bg);
+ overflow-x:hidden;
+}
+body:before{
+ content:""; position:fixed; inset:0; pointer-events:none; opacity:.25;
+ background-image:radial-gradient(#fff 1px,transparent 1px); background-size:24px 24px;
+}
+.container{width:min(1120px,92%);margin:auto}
+.glass{
+ background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(255,255,255,.36));
+ border:1px solid var(--border); box-shadow:var(--shadow);
+ backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+}
+header{position:sticky;top:0;z-index:20;padding:14px 0;background:rgba(244,251,255,.65);backdrop-filter:blur(16px)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink);font-weight:800}
+.logo-mark{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;font-size:24px;background:linear-gradient(135deg,var(--yellow),var(--pink),var(--blue2));box-shadow:0 8px 25px rgba(120,160,180,.2)}
+.logo small{display:block;color:#7890a2;font-size:11px;letter-spacing:1.5px}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+nav a{padding:9px 13px;border-radius:14px;text-decoration:none;color:var(--ink);font-size:13px;font-weight:600}
+nav a:hover{background:rgba(255,255,255,.75)}
+.hero{padding:74px 0 52px}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:42px;align-items:center}
+.badge{display:inline-flex;padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid #fff;font-size:12px;font-weight:700;color:#5d7990}
+h1,h2,h3{font-family:"Baloo 2",sans-serif}
+h1{font-size:clamp(48px,7vw,82px);line-height:.88;margin:18px 0;color:#314a61}
+h1 span{color:#6fbddd}
+.hero p{font-size:17px;line-height:1.8;color:var(--muted);max-width:640px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.btn{border:0;border-radius:16px;padding:13px 18px;font:700 14px Poppins;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s;box-shadow:0 10px 25px rgba(92,137,160,.13)}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:#86cff3;color:#163d53}.btn-soft{background:rgba(255,255,255,.75);color:var(--ink);border:1px solid white}
+.hero-card{min-height:380px;border-radius:38px;padding:30px;position:relative;overflow:hidden}
+.hero-card:after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:var(--pink);right:-80px;top:-60px;filter:blur(2px);opacity:.75}
+.toy{position:absolute;font-size:86px;filter:drop-shadow(0 12px 12px rgba(70,100,120,.15))}
+.t1{left:50px;top:48px}.t2{right:65px;top:110px;font-size:72px}.t3{left:125px;bottom:65px;font-size:70px}.t4{right:115px;bottom:55px;font-size:58px}
+.quote{position:absolute;left:28px;right:28px;bottom:20px;padding:16px 18px;border-radius:22px;background:rgba(255,255,255,.6);font-size:13px;font-weight:600}
+section{padding:58px 0}
+.section-title{text-align:center;max-width:760px;margin:0 auto 30px}
+.section-title h2{font-size:43px;margin:0 0 7px}.section-title p{color:var(--muted);line-height:1.7}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{padding:25px;border-radius:26px}.icon{font-size:34px}.card h3{font-size:24px;margin:10px 0 5px}.card p{color:var(--muted);font-size:14px;line-height:1.7;margin:0}
+.ods{display:grid;grid-template-columns:.7fr 1.3fr;gap:24px;align-items:stretch}
+.ods-number{border-radius:32px;padding:30px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(145deg,rgba(255,233,168,.75),rgba(255,255,255,.55))}
+.ods-number strong{font-family:"Baloo 2";font-size:100px;line-height:.8;color:#8e7130}.ods-number b{font-size:18px;margin-top:20px}
+.ods-text{border-radius:32px;padding:32px}.ods-text h3{font-size:30px;margin:0 0 10px}.ods-text p,.ods-text li{color:var(--muted);line-height:1.75;font-size:14px}.ods-text ul{padding-left:20px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.step{padding:22px;border-radius:25px}.step-num{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:#fff;font-weight:800;margin-bottom:13px}.step h3{font-size:20px;margin:0 0 6px}.step p{font-size:13px;line-height:1.65;color:var(--muted)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.form-card{padding:28px;border-radius:30px}.form-card h3{font-size:30px;margin:0 0 8px}.form-card>p{font-size:13px;color:var(--muted);line-height:1.6}
+label{display:block;font-size:12px;font-weight:700;margin:15px 0 6px}input,select,textarea{width:100%;padding:13px 14px;border-radius:14px;border:1px solid rgba(130,165,185,.25);background:rgba(255,255,255,.68);outline:none;font:14px Poppins;color:var(--ink)}textarea{min-height:105px;resize:vertical}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.check{padding:11px;border-radius:13px;background:rgba(255,255,255,.5);font-size:12px}
+.notice{padding:13px;border-radius:15px;background:rgba(255,238,188,.5);font-size:12px;color:#6f5d31;margin:15px 0}
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.contact{padding:25px;border-radius:27px}.contact a{display:block;margin-top:10px;color:#4d8eae;font-weight:700;text-decoration:none;word-break:break-word}
+footer{padding:35px 0 45px;text-align:center;color:#718496;font-size:12px}
+.toast{position:fixed;right:20px;bottom:20px;z-index:50;max-width:350px;padding:14px 17px;border-radius:16px;background:#314a61;color:white;box-shadow:var(--shadow);display:none;font-size:13px}
+@media(max-width:850px){.hero-grid,.ods,.form-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.hero-card{min-height:300px}}
+@media(max-width:560px){nav{display:none}.steps,.contact-grid{grid-template-columns:1fr}.hero{padding-top:45px}h1{font-size:58px}.checks{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<div class="container nav">
+<a class="logo" href="#inicio"><span class="logo-mark">🧸</span><span>Transforme Uma Infância<small>T.U.I. • ODS 1</small></span></a>
+<nav>
+<a href="#ods">ODS 1</a><a href="#como">Como funciona</a><a href="#doar">Doar</a><a href="#cadastro">Cadastro</a><a href="#contato">Contato</a>
+</nav>
+</div>
+</header>
+
+<main id="inicio">
+<section class="hero">
+<div class="container hero-grid">
+<div>
+<span class="badge">💛 Pequenos gestos • grandes infâncias</span>
+<h1>Transforme<br><span>Uma Infância</span></h1>
+<p>O <b>T.U.I.</b> é uma iniciativa de arrecadação de brinquedos para crianças em situação de vulnerabilidade. A proposta é transformar uma doação em um momento de carinho, diversão e esperança.</p>
+<div class="cta"><a class="btn btn-primary" href="#doar">🧸 Quero doar</a><a class="btn btn-soft" href="#ods">Conhecer a ODS 1</a></div>
+</div>
+<div class="hero-card glass">
+<div class="toy t1">🧸</div><div class="toy t2">🪁</div><div class="toy t3">🧩</div><div class="toy t4">🚂</div>
+<div class="quote">“Uma infância transformada começa com alguém que decidiu fazer a diferença.”</div>
+</div>
+</div>
+</section>
+
+<section id="ods">
+<div class="container">
+<div class="section-title"><h2>O que é a ODS 1?</h2><p>O T.U.I. se conecta ao primeiro Objetivo de Desenvolvimento Sustentável da ONU: <b>Erradicação da Pobreza</b>.</p></div>
+<div class="ods">
+<div class="ods-number glass"><strong>1</strong><b>ERRADICAÇÃO<br>DA POBREZA</b><span style="margin-top:12px;color:#718496;font-size:12px">“Acabar com a pobreza em todas as suas formas, em todos os lugares.”</span></div>
+<div class="ods-text glass">
+<h3>Mais do que doar: compartilhar oportunidades</h3>
+<p>A ODS 1 busca acabar com a pobreza em todas as suas formas e em todos os lugares. Entre suas metas estão reduzir a pobreza, ampliar a proteção social e garantir acesso a recursos e serviços básicos para pessoas em situação de vulnerabilidade.</p>
+<p>O T.U.I. contribui de forma local e comunitária para essa agenda ao mobilizar pessoas em torno da infância e da solidariedade. A doação de brinquedos não resolve, sozinha, a pobreza — mas pode apoiar o bem-estar, o acolhimento e a dignidade de crianças atendidas por instituições sociais.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="como">
+<div class="container">
+<div class="section-title"><h2>Como sua doação funciona?</h2><p>O caminho é simples, organizado e transparente.</p></div>
+<div class="steps">
+<div class="step glass"><div class="step-num">1</div><h3>Você escolhe</h3><p>Escolha doar brinquedos novos ou usados em bom estado e preencha o formulário de intenção.</p></div>
+<div class="step glass"><div class="step-num">2</div><h3>Você entrega</h3><p>As doações são recebidas no Colégio Atheneu, em Itaquaquecetuba.</p></div>
+<div class="step glass"><div class="step-num">3</div><h3>T.U.I. organiza</h3><p>A equipe reúne, confere e organiza as doações antes do encaminhamento.</p></div>
+<div class="step glass"><div class="step-num">4</div><h3>Chega a quem precisa</h3><p>As doações são encaminhadas para instituições de atendimento à infância, conforme a organização da campanha.</p></div>
+</div>
+<div class="notice"><b>Ponto de entrega:</b> Colégio Atheneu — Rua Juiz de Fora, 185 — Vila Virgínia, Itaquaquecetuba — SP, 08573-060.</div>
+</div>
+</section>
+
+<section id="doar">
+<div class="container">
+<div class="section-title"><h2>Quero fazer uma doação 🧸</h2><p>Registre sua intenção para que a organização consiga se preparar para receber sua contribuição.</p></div>
+<div class="form-grid">
+<form class="form-card glass" id="donationForm">
+<h3>Formulário de doação</h3><p>Depois de enviar, você poderá falar diretamente com o projeto pelo WhatsApp.</p>
+<label for="donor">Seu nome</label><input id="donor" required placeholder="Como podemos te chamar?">
+<label for="phone">WhatsApp</label><input id="phone" placeholder="(11) 99999-9999">
+<label for="type">O que você quer doar?</label>
+<div class="checks">
+<label class="check"><input type="checkbox" name="toy" value="Brinquedos novos"> Brinquedos novos</label>
+<label class="check"><input type="checkbox" name="toy" value="Brinquedos usados em bom estado"> Usados em bom estado</label>
+<label class="check"><input type="checkbox" name="toy" value="Livros infantis"> Livros infantis</label>
+<label class="check"><input type="checkbox" name="toy" value="Jogos e atividades"> Jogos/atividades</label>
+</div>
+<label for="qty">Quantidade aproximada</label><input id="qty" type="number" min="1" placeholder="Ex.: 3">
+<label for="msg">Observação</label><textarea id="msg" placeholder="Se quiser, conte um pouco sobre a doação."></textarea>
+<button class="btn btn-primary" type="submit">Registrar intenção de doação</button>
+</form>
+
+<div class="form-card glass" id="cadastro">
+<h3>Cadastro T.U.I.</h3><p>Crie seu cadastro neste dispositivo para facilitar seus próximos registros. <b>Os dados ficam armazenados apenas neste navegador</b> nesta versão do site.</p>
+<form id="signupForm">
+<label for="name">Nome completo</label><input id="name" required>
+<label for="email">E-mail</label><input id="email" type="email" required>
+<label for="city">Cidade</label><input id="city" value="Itaquaquecetuba">
+<label for="role">Quero participar como</label>
+<select id="role"><option>Doador(a)</option><option>Voluntário(a)</option><option>Apoiador(a)</option></select>
+<button class="btn btn-primary" type="submit">Salvar meu cadastro</button>
+</form>
+<div id="savedUser" class="notice" style="display:none"></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="destino">
+<div class="container">
+<div class="section-title"><h2>Onde as doações podem chegar?</h2><p>O projeto informa o destino para reforçar a transparência do caminho da arrecadação.</p></div>
+<div class="contact-grid">
+<div class="contact glass"><div class="icon">🏫</div><h3>Ponto de arrecadação</h3><p>Colégio Atheneu</p><p>Rua Juiz de Fora, 185 — Vila Virgínia<br>Itaquaquecetuba — SP • CEP 08573-060</p></div>
+<div class="contact glass"><div class="icon">🏠</div><h3>Instituição indicada</h3><p>Associação Casa da Criança Zenaide de Souza Lima</p><p>Rua Benedito Fernandes Cruz, 60 — Centro<br>Itaquaquecetuba — SP • CEP 08570-004</p></div>
+</div>
+<p style="text-align:center;color:#7a8b9a;font-size:12px;margin-top:18px">A Associação Casa da Criança informa oficialmente seu endereço e atua com crianças e adolescentes em situação de vulnerabilidade social.</p>
+</div>
+</section>
+
+<section id="contato">
+<div class="container">
+<div class="section-title"><h2>Fale com o T.U.I.</h2><p>Tem uma dúvida, quer combinar uma entrega ou participar da organização? Chame a equipe.</p></div>
+<div class="contact-grid">
+<div class="contact glass"><div class="icon">💬</div><h3>WhatsApp</h3><p>Fale diretamente com o projeto.</p><a href="https://wa.me/5511968293336?text=Olá!%20Quero%20saber%20mais%20sobre%20o%20projeto%20Transforme%20Uma%20Infância%20(T.U.I.)." target="_blank" rel="noopener">+55 (11) 96829-3336 →</a></div>
+<div class="contact glass"><div class="icon">✉️</div><h3>E-mail</h3><p>Envie sua mensagem para a equipe.</p><a href="mailto:projeto.transformeumainfancia@gmail.com">projeto.transformeumainfancia@gmail.com →</a></div>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container">🧸 <b>Transforme Uma Infância — T.U.I.</b><br>Uma iniciativa de solidariedade e mobilização em conexão com a ODS 1.</div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const toast = (msg) => {
+  const el=document.getElementById('toast'); el.textContent=msg; el.style.display='block';
+  clearTimeout(window.__toast); window.__toast=setTimeout(()=>el.style.display='none',4200);
+};
+
+document.getElementById('signupForm').addEventListener('submit', e=>{
+ e.preventDefault();
+ const user={name:document.getElementById('name').value,email:document.getElementById('email').value,city:document.getElementById('city').value,role:document.getElementById('role').value};
+ localStorage.setItem('tuiCadastro',JSON.stringify(user));
+ showUser(user); toast('Cadastro salvo neste navegador! 💛');
+});
+function showUser(u){
+ const el=document.getElementById('savedUser');
+ el.style.display='block';
+ el.innerHTML=`<b>Cadastro salvo:</b><br>${u.name}<br>${u.email}<br>${u.role}`;
+}
+const saved=localStorage.getItem('tuiCadastro');
+if(saved){try{showUser(JSON.parse(saved))}catch(e){}}
+
+document.getElementById('donationForm').addEventListener('submit', e=>{
+ e.preventDefault();
+ const name=document.getElementById('donor').value;
+ const phone=document.getElementById('phone').value;
+ const qty=document.getElementById('qty').value;
+ const msg=document.getElementById('msg').value;
+ const toys=[...document.querySelectorAll('input[name="toy"]:checked')].map(x=>x.value);
+ if(!toys.length){toast('Escolha pelo menos um tipo de doação. 🧸');return;}
+ const text=`Olá! Sou ${name}. Quero registrar uma doação para o T.U.I.%0A%0AItens: ${toys.join(', ')}%0AQuantidade aproximada: ${qty||'não informada'}%0AWhatsApp: ${phone||'não informado'}%0AObservação: ${msg||'nenhuma'}`;
+ localStorage.setItem('tuiUltimaDoacao',JSON.stringify({name,phone,qty,toys,msg,date:new Date().toISOString()}));
+ window.open(`https://wa.me/5511968293336?text=${text}`,'_blank');
+ toast('Intenção registrada! Abrimos o WhatsApp para você confirmar com o projeto. 💛');
+});
+</script>
+</body>
+</html>
