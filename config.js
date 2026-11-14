@@ -16,12 +16,11 @@ window.TUI_CONFIG = {
      - "anon public"  -> cole em supabaseAnonKey
      Enquanto estiver com os textos COLE_AQUI, o site funciona no modo
      local (salva só no navegador) e avisa no rodapé do formulário.       */
-  supabaseUrl: "https://zakzqucqhtawkspvkgih.supabase.com",
+  supabaseUrl: "https://zakzqucqhtawkspvkgih.supabase.co",
   supabaseAnonKey: "sb_publishable_T8FRjbHHWIR6wFYGv7eDWg_mPlQllD6",
 
   /* ---- 2) CONTATO ---------------------------------------------------
      Número do WhatsApp com DDI+DDD, apenas dígitos.                      */
-  whatsapp: "5511968293336",
   email: "projeto.transformeumainfancia@gmail.com",
 
   /* ---- 3) OPÇÕES ---------------------------------------------------- */
