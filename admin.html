@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Área da equipe | T.U.I.</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧸</text></svg>">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+:root{--ink:#30445b;--muted:#66788b;--shadow:0 20px 60px rgba(91,131,155,.17)}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:Poppins,Arial,sans-serif;min-height:100vh;
+ background:radial-gradient(circle at 10% 10%,#dff5ff 0 16%,transparent 35%),radial-gradient(circle at 90% 15%,#fff1c9 0 14%,transparent 34%),radial-gradient(circle at 80% 90%,#d9f8ea 0 15%,transparent 36%),#f4fbff}
+.container{width:min(1180px,94%);margin:auto;padding:26px 0}
+.glass{background:linear-gradient(135deg,rgba(255,255,255,.82),rgba(255,255,255,.5));border:1px solid rgba(255,255,255,.9);box-shadow:var(--shadow);backdrop-filter:blur(18px);border-radius:28px}
+h1,h2,h3{font-family:"Baloo 2",sans-serif;margin:0}
+header{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800}
+.mark{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;font-size:22px;background:linear-gradient(135deg,#ffe9a8,#ffd1df,#bfe9ff)}
+.brand small{display:block;color:#7890a2;font-size:11px;letter-spacing:1.4px;font-weight:600}
+.login{max-width:420px;margin:8vh auto;padding:30px}
+label{display:block;font-size:12px;font-weight:700;margin:14px 0 6px}
+input{width:100%;padding:13px 14px;border-radius:14px;border:1px solid rgba(130,165,185,.3);background:rgba(255,255,255,.75);font:14px Poppins;color:var(--ink);outline:none}
+input:focus{border-color:#86cff3;box-shadow:0 0 0 3px rgba(134,207,243,.25)}
+.btn{border:0;border-radius:15px;padding:12px 18px;font:700 14px Poppins;cursor:pointer;background:#86cff3;color:#163d53;box-shadow:0 10px 25px rgba(92,137,160,.15)}
+.btn.soft{background:rgba(255,255,255,.9);color:var(--ink);border:1px solid #fff}
+.btn:disabled{opacity:.6;cursor:progress}
+.fb{margin-top:14px;font-size:13px;padding:12px 14px;border-radius:14px;display:none}
+.fb.show{display:block}.fb.warn{background:rgba(255,225,225,.7);color:#8a4a4a}.fb.ok{background:rgba(185,240,220,.7);color:#255c48}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab{padding:10px 16px;border-radius:14px;border:1px solid #fff;background:rgba(255,255,255,.6);cursor:pointer;font:600 13px Poppins;color:var(--ink)}
+.tab.active{background:#86cff3;color:#163d53}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.toolbar input{max-width:280px}
+.stat{padding:12px 16px;border-radius:16px;background:rgba(255,255,255,.65);font-size:12px;font-weight:600;border:1px solid #fff}
+.tablewrap{overflow:auto;border-radius:22px;background:rgba(255,255,255,.6);border:1px solid #fff}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:760px}
+th,td{padding:11px 13px;text-align:left;border-bottom:1px solid rgba(130,165,185,.15);vertical-align:top}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:#6b8195;background:rgba(255,255,255,.75);position:sticky;top:0}
+tr:hover td{background:rgba(255,255,255,.55)}
+td b{white-space:nowrap}
+.tag{display:inline-block;padding:3px 9px;border-radius:999px;background:#e6f6ff;color:#2f6d8d;font-size:11px;font-weight:600;margin:2px 3px 2px 0}
+.muted{color:var(--muted);font-size:12px}
+.del{background:#ffe1e1;color:#8a4a4a;border:0;border-radius:10px;padding:6px 10px;font:600 11px Poppins;cursor:pointer}
+.panel{padding:22px}
+.empty{text-align:center;padding:30px;color:var(--muted);font-size:13px}
+a.link{color:#4d8eae;font-weight:600;text-decoration:none;font-size:13px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<section class="glass login" id="loginBox">
+<div class="brand" style="margin-bottom:8px"><span class="mark">🧸</span><span>Área da equipe<small>T.U.I. • ADMIN</small></span></div>
+<p class="muted">Entre com o e-mail e a senha cadastrados no painel do Supabase (Authentication &gt; Users) para ver os cadastros e as doações.</p>
+<form id="loginForm">
+<label for="le">E-mail</label><input id="le" type="email" autocomplete="username" required>
+<label for="lp">Senha</label><input id="lp" type="password" autocomplete="current-password" required>
+<button class="btn" type="submit" style="width:100%;margin-top:18px" id="loginBtn">Entrar</button>
+<div class="fb" id="loginFb" role="alert"></div>
+</form>
+<p class="muted" style="margin-top:16px">Esqueceu a senha? Redefina em Supabase &gt; Authentication &gt; Users.</p>
+<a class="link" href="index.html">← Voltar ao site</a>
+</section>
+
+<section id="appBox" hidden>
+<header>
+<div class="brand"><span class="mark">🧸</span><span>Área da equipe<small>T.U.I. • ADMIN</small></span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<a class="btn soft" href="index.html">Ver site</a>
+<button class="btn soft" id="logoutBtn">Sair</button>
+</div>
+</header>
+<div class="glass panel">
+<div class="tabs">
+<button class="tab active" data-tab="tui_doacoes">🧸 Doações</button>
+<button class="tab" data-tab="tui_cadastros">👥 Cadastros</button>
+</div>
+<div class="toolbar">
+<input id="busca" placeholder="Buscar por nome, e-mail ou item...">
+<button class="btn soft" id="atualizar">Atualizar</button>
+<button class="btn soft" id="exportar">Exportar CSV</button>
+<span class="stat" id="stat">—</span>
+</div>
+<div class="fb" id="appFb" role="status"></div>
+<div class="tablewrap" id="tabela"></div>
+<p class="muted" style="margin-top:12px">Os dados ficam no Supabase e só são visíveis para usuários logados nesta área. Exporte o CSV para abrir no Excel ou Google Planilhas.</p>
+</div>
+</section>
+
+</div>
+
+<script src="config.js"></script>
+<script>
+const CFG = window.TUI_CONFIG || {};
+const base = ()=> (CFG.supabaseUrl||'').trim().replace(/\/+$/,'');
+const anon = ()=> (CFG.supabaseAnonKey||'').trim();
+const configurado = ()=> /^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(base()) && anon().length>20 && !anon().startsWith('COLE_AQUI');
+const SESS = 'tuiAdminSessao';
+
+const fb = (el, tipo, msg)=>{ el.className='fb show '+tipo; el.textContent=msg; };
+const esc = s=> String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dataBR = iso=>{ if(!iso) return ''; const d=new Date(iso); return d.toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'}); };
+
+let sessao = null, abaAtual='tui_doacoes', registros=[];
+
+function salvarSessao(s){ sessao=s; s?sessionStorage.setItem(SESS,JSON.stringify(s)):sessionStorage.removeItem(SESS); }
+function carregarSessao(){ try{ sessao=JSON.parse(sessionStorage.getItem(SESS)||'null'); }catch(e){ sessao=null; }
+  if(sessao && sessao.expires_at && Date.now()/1000 > sessao.expires_at - 30) sessao=null; }
+
+async function login(email, senha){
+  const r = await fetch(`${base()}/auth/v1/token?grant_type=password`,{
+    method:'POST', headers:{'apikey':anon(),'Content-Type':'application/json'},
+    body:JSON.stringify({email,password:senha})
+  });
+  const j = await r.json().catch(()=>({}));
+  if(!r.ok) throw new Error(j.error_description || j.msg || j.error || 'E-mail ou senha inválidos.');
+  salvarSessao({access_token:j.access_token, refresh_token:j.refresh_token, expires_at: Math.floor(Date.now()/1000)+(j.expires_in||3600), email:j.user?.email});
+  return j;
+}
+
+async function api(tabela, query=''){
+  const r = await fetch(`${base()}/rest/v1/${tabela}${query}`,{
+    headers:{'apikey':anon(),'Authorization':'Bearer '+(sessao?.access_token||''),'Accept':'application/json'}
+  });
+  if(r.status===401 || r.status===403){ salvarSessao(null); throw new Error('Sessão expirada. Entre novamente.'); }
+  if(!r.ok) throw new Error('Erro '+r.status+': '+(await r.text()).slice(0,200));
+  return r.json();
+}
+
+async function carregar(){
+  const el=document.getElementById('tabela'); const msg=document.getElementById('appFb');
+  el.innerHTML='<div class="empty">Carregando...</div>'; msg.className='fb';
+  try{
+    registros = await api(abaAtual, '?select=*&order=criado_em.desc&limit=1000');
+    render();
+  }catch(err){ el.innerHTML='<div class="empty">'+esc(err.message)+'</div>'; }
+}
+
+function filtrados(){
+  const q=(document.getElementById('busca').value||'').toLowerCase().trim();
+  if(!q) return registros;
+  return registros.filter(r=>JSON.stringify(r).toLowerCase().includes(q));
+}
+
+function render(){
+  const el=document.getElementById('tabela'); const lista=filtrados();
+  document.getElementById('stat').textContent = `${lista.length} registro(s)` + (lista.length!==registros.length ? ` de ${registros.length}` : '');
+  if(!lista.length){ el.innerHTML='<div class="empty">Nenhum registro ainda.</div>'; return; }
+
+  if(abaAtual==='tui_doacoes'){
+    el.innerHTML = `<table><thead><tr><th>Data</th><th>Nome</th><th>WhatsApp</th><th>Itens</th><th>Qtd.</th><th>Observação</th><th></th></tr></thead><tbody>${
+      lista.map(r=>`<tr>
+        <td class="muted">${esc(dataBR(r.criado_em))}</td>
+        <td><b>${esc(r.nome)}</b></td>
+        <td>${esc(r.whatsapp||'—')}</td>
+        <td>${(r.itens||[]).map(i=>`<span class="tag">${esc(i)}</span>`).join('') || '—'}${r.tamanho_fralda?`<div class="muted">Fralda: ${esc(r.tamanho_fralda)}</div>`:''}</td>
+        <td>${esc(r.quantidade ?? '—')}</td>
+        <td class="muted">${esc(r.observacao||'')}</td>
+        <td><button class="del" data-del="${esc(r.id)}">Excluir</button></td>
+      </tr>`).join('')}</tbody></table>`;
+  } else {
+    el.innerHTML = `<table><thead><tr><th>Data</th><th>Nome</th><th>E-mail</th><th>WhatsApp</th><th>Cidade</th><th>Perfil</th><th></th></tr></thead><tbody>${
+      lista.map(r=>`<tr>
+        <td class="muted">${esc(dataBR(r.criado_em))}</td>
+        <td><b>${esc(r.nome)}</b></td>
+        <td>${esc(r.email||'—')}</td>
+        <td>${esc(r.telefone||'—')}</td>
+        <td>${esc(r.cidade||'—')}</td>
+        <td><span class="tag">${esc(r.perfil||'—')}</span></td>
+        <td><button class="del" data-del="${esc(r.id)}">Excluir</button></td>
+      </tr>`).join('')}</tbody></table>`;
+  }
+}
+
+function csv(){
+  const lista=filtrados(); if(!lista.length){ alert('Nada para exportar.'); return; }
+  const cols = abaAtual==='tui_doacoes'
+    ? ['criado_em','nome','whatsapp','itens','quantidade','tamanho_fralda','observacao','origem']
+    : ['criado_em','nome','email','telefone','cidade','perfil'];
+  const linha = (arr)=> arr.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';');
+  const conteudo = [linha(cols), ...lista.map(r=>linha(cols.map(c=> Array.isArray(r[c])? r[c].join(', ') : (c==='criado_em'? dataBR(r[c]) : r[c]))))].join('\r\n');
+  const blob = new Blob(['\ufeff'+conteudo], {type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`tui-${abaAtual.replace('tui_','')}-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click(); URL.revokeObjectURL(a.href);
+}
+
+/* eventos */
+document.getElementById('loginForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const box=document.getElementById('loginFb');
+  if(!configurado()){ fb(box,'warn','Configure o arquivo config.js com a URL e a chave do Supabase antes de entrar.'); return; }
+  const btn=document.getElementById('loginBtn'); btn.disabled=true; btn.textContent='Entrando...';
+  try{
+    await login(document.getElementById('le').value.trim(), document.getElementById('lp').value);
+    abrirApp();
+  }catch(err){ fb(box,'warn',err.message); }
+  finally{ btn.disabled=false; btn.textContent='Entrar'; }
+});
+
+document.getElementById('logoutBtn').addEventListener('click',()=>{ salvarSessao(null); document.getElementById('appBox').hidden=true; document.getElementById('loginBox').hidden=false; });
+
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); t.classList.add('active');
+  abaAtual=t.dataset.tab; document.getElementById('busca').value=''; carregar();
+}));
+document.getElementById('atualizar').addEventListener('click', carregar);
+document.getElementById('exportar').addEventListener('click', csv);
+document.getElementById('busca').addEventListener('input', render);
+
+document.getElementById('tabela').addEventListener('click', async e=>{
+  const b=e.target.closest('[data-del]'); if(!b) return;
+  if(!confirm('Excluir este registro? Essa ação não pode ser desfeita.')) return;
+  try{
+    const r = await fetch(`${base()}/rest/v1/${abaAtual}?id=eq.${encodeURIComponent(b.dataset.del)}`,{
+      method:'DELETE', headers:{'apikey':anon(),'Authorization':'Bearer '+(sessao?.access_token||''),'Prefer':'return=minimal'}
+    });
+    if(!r.ok) throw new Error('Erro '+r.status+': '+(await r.text()).slice(0,150));
+    registros = registros.filter(x=>x.id!==b.dataset.del); render();
+    fb(document.getElementById('appFb'),'ok','Registro excluído.');
+  }catch(err){ fb(document.getElementById('appFb'),'warn',err.message); }
+});
+
+function abrirApp(){
+  document.getElementById('loginBox').hidden=true;
+  document.getElementById('appBox').hidden=false;
+  carregar();
+}
+
+carregarSessao();
+if(sessao) abrirApp();
+</script>
+</body>
+</html>
