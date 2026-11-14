@@ -21,7 +21,6 @@ create table if not exists public.tui_cadastros (
   criado_em   timestamptz not null default now(),
   nome        text not null check (char_length(nome) between 2 and 120),
   email       text not null check (char_length(email) between 5 and 160),
-  telefone    text check (char_length(telefone) <= 20),
   cidade      text check (char_length(cidade) <= 90),
   perfil      text check (char_length(perfil) <= 40)
 );
@@ -31,7 +30,6 @@ create table if not exists public.tui_doacoes (
   id              uuid primary key default gen_random_uuid(),
   criado_em       timestamptz not null default now(),
   nome            text not null check (char_length(nome) between 2 and 120),
-  whatsapp        text check (char_length(whatsapp) <= 20),
   itens           text[] not null default '{}',
   quantidade      integer check (quantidade is null or (quantidade >= 1 and quantidade <= 9999)),
   tamanho_fralda  text check (char_length(tamanho_fralda) <= 60),

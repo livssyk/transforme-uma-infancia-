@@ -10,7 +10,7 @@ Site da campanha **T.U.I.** (ODS 1) com formulários que gravam as informações
 |---|---|
 | `index.html` | O site (página inicial, ODS 1, como funciona, formulários, contatos) |
 | `admin.html` | **Área da equipe**: login, lista de doações e cadastros, busca, exportar CSV, excluir |
-| `config.js` | ⚙️ **Único arquivo que você edita**: chave do banco + WhatsApp/e-mail |
+| `config.js` | ⚙️ **Único arquivo que você edita**: chave do banco + e-mail |
 | `supabase.sql` | Script que cria as tabelas e as regras de segurança (roda 1 vez só) |
 | `README.md` | Este guia |
 
@@ -46,7 +46,6 @@ Abra `config.js` (no GitHub, clique no arquivo → ícone de lápis ✏️) e tr
 ```js
 supabaseUrl: "COLE_AQUI_A_URL_DO_PROJETO",       // ex.: "https://abcdefghij.supabase.co"
 supabaseAnonKey: "COLE_AQUI_A_CHAVE_ANON_PUBLICA", // a chave anon/public
-whatsapp: "5511968293336",                        // só números: 55 + DDD + número
 email: "projeto.transformeumainfancia@gmail.com",
 ```
 
@@ -98,7 +97,7 @@ Depois siga do item 3 da Opção A (Settings → Pages).
 
 ## 🔄 Como o fluxo funciona hoje
 
-**Doador(a) preenche o formulário** → os dados vão para o banco online **e** abrem o WhatsApp com a mensagem pronta (para combinar a entrega). Se a internet falhar, o site avisa e salva uma cópia no navegador, sem perder o registro.
+**Doador(a) preenche o formulário** → os dados vão para o banco online. Se a internet falhar, o site avisa e tenta guardar uma cópia local neste navegador. A área da equipe permite consultar os registros.
 
 **Itens disponíveis no formulário de doação:**
 🧸 Brinquedos novos • 🪀 Brinquedos usados em bom estado • 📚 Livros infantis • 🧩 Jogos/atividades • 👶 Fraldas descartáveis • 🍼 Mamadeiras • 🧷 Chupetas • 🧼 Produtos de higiene básica • 🧴 Itens de cuidados infantis
@@ -110,7 +109,7 @@ Ao marcar *Fraldas descartáveis*, aparece um campo opcional de tamanho (RN, P, 
 ## 🔒 Privacidade e segurança (importante)
 
 - **Visitantes não conseguem ler os dados.** As regras do banco permitem apenas *inserir* (anon). Ler e excluir é exclusivo de quem está **logado** (`authenticated`).
-- Não coletamos CPF, endereço nem dados de crianças — só nome, contato e itens doados.
+- Não coletamos CPF, endereço nem dados de crianças — só nome, e-mail no cadastro e itens doados.
 - Vale incluir na campanha um aviso simples: *"Os dados informados são usados apenas para organizar as doações da campanha T.U.I."* (LGPD, art. 7º — consentimento).
 - Se quiser apagar tudo no fim da campanha: **Table Editor** → selecione as linhas → *Delete rows*, ou rode no SQL Editor:
   ```sql
@@ -137,7 +136,6 @@ Ao marcar *Fraldas descartáveis*, aparece um campo opcional de tamanho (RN, P, 
 | "Erro 401" ou "new row violates row-level security policy" | O `supabase.sql` não foi executado | Rode o script completo no SQL Editor |
 | "E-mail ou senha inválidos" no `admin.html` | Usuário não confirmado | Authentication → Users → confirme o e-mail (ou crie com *Auto Confirm User*) |
 | Site abriu, mas em branco | `config.js` com vírgula/aspas faltando | Confira o arquivo (mantenha as aspas e as vírgulas) |
-| Não aparece o botão do WhatsApp | Bloqueador de pop-up | Permita pop-ups no site |
 | Mudou algo e o site não atualiza | Cache do GitHub Pages | Espere 2 min e recarregue com `Ctrl+F5` |
 
 ---
@@ -145,10 +143,9 @@ Ao marcar *Fraldas descartáveis*, aparece um campo opcional de tamanho (RN, P, 
 ## 📌 O que foi ajustado nesta versão
 
 - **Brinquedos** e itens de **cuidado infantil** (fraldas, mamadeiras, chupetas, higiene) agora estão no formulário.
-- **Número do WhatsApp unificado** — o site mostrava um número e o botão abria outro. Agora há uma única fonte (no `config.js`) e a mensagem da doação vai para o número certo.
 - **Menu mobile** funcionando (antes os links desapareciam em telas pequenas).
 - **Link "Destino"** adicionado ao menu (a seção existia, mas não era acessível pelo menu).
-- **Cadastro salvo online** (antes só no navegador), com campo de WhatsApp opcional.
+- **Cadastro salvo online** (antes só no navegador).
 - **Mensagens de sucesso/erro** dentro do formulário, validação de nome/e-mail, botões com estado "Enviando...", e formulário limpo após o envio.
 - **Área da equipe** (`admin.html`) com login, busca, exportação CSV e exclusão.
 - Pequenos ajustes de acessibilidade (foco nos campos, `aria-live`, favicon 🧸) e SEO (descrição atualizada).

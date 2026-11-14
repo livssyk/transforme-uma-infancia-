@@ -74,6 +74,7 @@ section{padding:58px 0}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}.form-card{padding:28px;border-radius:30px}.form-card h3{font-size:30px;margin:0 0 8px}.form-card>p{font-size:13px;color:var(--muted);line-height:1.6}
 label{display:block;font-size:12px;font-weight:700;margin:15px 0 6px}input,select,textarea{width:100%;padding:13px 14px;border-radius:14px;border:1px solid rgba(130,165,185,.25);background:rgba(255,255,255,.68);outline:none;font:14px Poppins;color:var(--ink)}textarea{min-height:105px;resize:vertical}
 input:focus,select:focus,textarea:focus{border-color:#86cff3;box-shadow:0 0 0 3px rgba(134,207,243,.25)}
+.hp-field{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
 .checks{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.check{padding:11px;border-radius:13px;background:rgba(255,255,255,.5);font-size:12px;margin:0;font-weight:500;display:flex;align-items:center;gap:8px;cursor:pointer;line-height:1.35}
 .check input{margin:0;width:16px;height:16px;flex:0 0 auto;accent-color:#5aa9d1}
 .check:hover{background:rgba(255,255,255,.85)}
@@ -86,7 +87,7 @@ input:focus,select:focus,textarea:focus{border-color:#86cff3;box-shadow:0 0 0 3p
 .feedback.show{display:block}
 .feedback.ok{background:rgba(185,240,220,.65);color:#255c48}
 .feedback.warn{background:rgba(255,233,168,.65);color:#6f5d31}
-.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.contact{padding:25px;border-radius:27px}.contact a{display:block;margin-top:10px;color:#4d8eae;font-weight:700;text-decoration:none;word-break:break-word}
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.contact-grid-single{grid-template-columns:minmax(0,560px);justify-content:center}.contact{padding:25px;border-radius:27px}.contact a{display:block;margin-top:10px;color:#4d8eae;font-weight:700;text-decoration:none;word-break:break-word}
 footer{padding:35px 0 45px;text-align:center;color:#718496;font-size:12px}
 footer a{color:#4d8eae}
 .toast{position:fixed;right:20px;bottom:20px;z-index:50;max-width:350px;padding:14px 17px;border-radius:16px;background:#314a61;color:white;box-shadow:var(--shadow);display:none;font-size:13px}
@@ -158,13 +159,13 @@ footer a{color:#4d8eae}
 <div class="container">
 <div class="section-title"><h2>Quero fazer uma doação 🧸</h2><p>Registre sua intenção para que a organização consiga se preparar para receber sua contribuição.</p></div>
 <div class="form-grid">
-<form class="form-card glass" id="donationForm" novalidate>
-<h3>Formulário de doação</h3><p>Depois de enviar, você poderá falar diretamente com o projeto pelo WhatsApp.</p>
+<form class="form-card glass" id="donationForm" novalidate autocomplete="on">
+<h3>Formulário de doação</h3><p>Depois de enviar, sua intenção ficará registrada para a equipe da campanha.</p>
 
 <div class="notice" id="dbStatus" hidden></div>
 
-<label for="donor">Seu nome</label><input id="donor" name="nome" required maxlength="120" placeholder="Como podemos te chamar?" autocomplete="name">
-<label for="phone">WhatsApp</label><input id="phone" name="whatsapp" type="tel" inputmode="tel" maxlength="20" placeholder="(11) 99999-9999" autocomplete="tel">
+<div class="hp-field" aria-hidden="true"><label for="donationWebsite">Não preencher</label><input id="donationWebsite" name="website" tabindex="-1" autocomplete="off"></div>
+<label for="donor">Seu nome</label><input id="donor" name="nome" required minlength="3" maxlength="120" placeholder="Como podemos te chamar?" autocomplete="name">
 
 <p class="checks-title" style="font-size:12px;font-weight:700;margin:15px 0 0">O que você quer doar? <span style="color:#7a8b9a;font-weight:500">(marque uma ou mais opções)</span></p>
 <div class="checks">
@@ -179,7 +180,7 @@ footer a{color:#4d8eae}
 <label class="check"><input type="checkbox" name="itens" value="Itens de cuidados infantis"> 🧴 Itens de cuidados infantis</label>
 </div>
 
-<label for="qty">Quantidade aproximada</label><input id="qty" name="quantidade" type="number" min="1" max="9999" placeholder="Ex.: 3">
+<label for="qty">Quantidade aproximada</label><input id="qty" name="quantidade" type="number" inputmode="numeric" min="1" max="9999" step="1" placeholder="Ex.: 3">
 <div id="fraldaBox" style="display:none">
 <label for="tamanhoFralda">Tamanho das fraldas (opcional)</label>
 <input id="tamanhoFralda" name="tamanho_fralda" maxlength="60" placeholder="Ex.: M, G, RN, P/M/G misturados">
@@ -191,11 +192,11 @@ footer a{color:#4d8eae}
 
 <div class="form-card glass" id="cadastro">
 <h3>Cadastro T.U.I.</h3><p>Crie seu cadastro para facilitar seus próximos registros e receber novidades da campanha.</p>
-<form id="signupForm" novalidate>
-<label for="name">Nome completo</label><input id="name" name="nome" required maxlength="120" autocomplete="name">
+<form id="signupForm" novalidate autocomplete="on">
+<div class="hp-field" aria-hidden="true"><label for="signupWebsite">Não preencher</label><input id="signupWebsite" name="website" tabindex="-1" autocomplete="off"></div>
+<label for="name">Nome completo</label><input id="name" name="nome" required minlength="3" maxlength="120" autocomplete="name">
 <label for="email">E-mail</label><input id="email" name="email" type="email" required maxlength="160" autocomplete="email">
-<label for="city">Cidade</label><input id="city" name="cidade" value="Itaquaquecetuba" maxlength="90">
-<label for="phone2">WhatsApp (opcional)</label><input id="phone2" name="telefone" type="tel" inputmode="tel" maxlength="20" placeholder="(11) 99999-9999" autocomplete="tel">
+<label for="city">Cidade</label><input id="city" name="cidade" value="Itaquaquecetuba" maxlength="90" autocomplete="address-level2">
 <label for="role">Quero participar como</label>
 <select id="role" name="perfil"><option>Doador(a)</option><option>Voluntário(a)</option><option>Apoiador(a)</option></select>
 <button class="btn btn-primary" type="submit" id="btnCadastro" style="width:100%;margin-top:18px">Salvar meu cadastro</button>
@@ -221,8 +222,7 @@ footer a{color:#4d8eae}
 <section id="contato">
 <div class="container">
 <div class="section-title"><h2>Fale com o T.U.I.</h2><p>Tem uma dúvida, quer combinar uma entrega ou participar da organização? Chame a equipe.</p></div>
-<div class="contact-grid">
-<div class="contact glass"><div class="icon">💬</div><h3>WhatsApp</h3><p>Fale diretamente com o projeto.</p><a data-whatsapp data-wa-text="Olá! Quero saber mais sobre o projeto Transforme Uma Infância (T.U.I.)." href="#" target="_blank" rel="noopener">WhatsApp →</a></div>
+<div class="contact-grid contact-grid-single">
 <div class="contact glass"><div class="icon">✉️</div><h3>E-mail</h3><p>Envie sua mensagem para a equipe.</p><a data-email href="#">E-mail →</a></div>
 </div>
 </div>
@@ -242,28 +242,30 @@ const toast = (msg) => {
   const el=document.getElementById('toast'); el.textContent=msg; el.style.display='block';
   clearTimeout(window.__toast); window.__toast=setTimeout(()=>el.style.display='none',4200);
 };
-const soDigitos = (v)=> (v||'').replace(/\D/g,'');
-const formatarTelefone = (n)=>{
-  const d = soDigitos(n);
-  if(d.length===13) return `+${d.slice(0,2)} (${d.slice(2,4)}) ${d.slice(4,9)}-${d.slice(9)}`;
-  if(d.length===12) return `+${d.slice(0,2)} (${d.slice(2,4)}) ${d.slice(4,8)}-${d.slice(8)}`;
-  if(d.length===11) return `(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`;
-  return n;
-};
-const waLink = (texto)=>{
-  const num = soDigitos(CFG.whatsapp||'');
-  return `https://wa.me/${num}?text=${encodeURIComponent(texto||'')}`;
-};
 const mostrarFeedback = (el, tipo, html)=>{
   el.className = 'feedback show ' + tipo; el.innerHTML = html;
+};
+const guardarLocal = (chave, valor)=>{
+  try{ localStorage.setItem(chave, JSON.stringify(valor)); return true; }
+  catch(err){ console.warn('Não foi possível salvar no armazenamento local.', err); return false; }
+};
+const adicionarPendente = (tipo, dados)=>{
+  try{
+    const chave='tuiEnviosPendentes';
+    const fila=JSON.parse(localStorage.getItem(chave)||'[]');
+    fila.push({id:crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`, tipo, criado_em:new Date().toISOString(), dados});
+    localStorage.setItem(chave, JSON.stringify(fila));
+    return true;
+  }catch(err){ console.warn('Não foi possível salvar a cópia local.', err); return false; }
+};
+const enviarComPrazo=(url, options, timeoutMs=15000)=>{
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(), timeoutMs);
+  return fetch(url,{...options,signal:controller.signal}).finally(()=>clearTimeout(timer));
 };
 
 /* ============ Configuração visual ============ */
 (function configVisual(){
-  document.querySelectorAll('[data-whatsapp]').forEach(a=>{
-    a.href = waLink(a.dataset.waText);
-    a.textContent = formatarTelefone(CFG.whatsapp) + ' →';
-  });
   document.querySelectorAll('[data-email]').forEach(a=>{
     a.href = 'mailto:' + (CFG.email||'');
     a.textContent = CFG.email + ' →';
@@ -299,7 +301,7 @@ const DB = {
   },
   async inserir(tabela, dados){
     if(!this.configurado()) return {ok:false, modo:'local'};
-    const r = await fetch(`${this.base()}/rest/v1/${tabela}`,{
+    const r = await enviarComPrazo(`${this.base()}/rest/v1/${tabela}`,{
       method:'POST',
       headers:this.headers({'Prefer':'return=minimal'}),
       body:JSON.stringify(dados)
@@ -324,35 +326,44 @@ const DB = {
 const CHAVE_LOCAL = 'tuiCadastro';
 document.getElementById('signupForm').addEventListener('submit', async e=>{
   e.preventDefault();
-  const fb=document.getElementById('cadastroFeedback');
+  const form=e.currentTarget, fb=document.getElementById('cadastroFeedback');
+  fb.className='feedback'; fb.innerHTML='';
+  if(form.dataset.submitting==='1') return;
+  if(document.getElementById('signupWebsite').value) return;
   const user={
-    nome:document.getElementById('name').value.trim(),
+    nome:document.getElementById('name').value.trim().replace(/\s+/g,' '),
     email:document.getElementById('email').value.trim().toLowerCase(),
-    cidade:document.getElementById('city').value.trim(),
-    telefone:document.getElementById('phone2').value.trim(),
+    cidade:document.getElementById('city').value.trim().replace(/\s+/g,' '),
     perfil:document.getElementById('role').value
   };
-  if(user.nome.length < 3){ mostrarFeedback(fb,'warn','Informe seu nome completo.'); return; }
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(user.email)){ mostrarFeedback(fb,'warn','Informe um e-mail válido.'); return; }
+  if(user.nome.length < 3){ mostrarFeedback(fb,'warn','Informe seu nome completo (pelo menos 3 caracteres).'); document.getElementById('name').focus(); return; }
+  if(user.nome.length > 120 || user.cidade.length > 90){ mostrarFeedback(fb,'warn','Confira o tamanho dos campos e tente novamente.'); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(user.email) || user.email.length > 160){ mostrarFeedback(fb,'warn','Informe um e-mail válido.'); document.getElementById('email').focus(); return; }
+  if(!['Doador(a)','Voluntário(a)','Apoiador(a)'].includes(user.perfil)){ mostrarFeedback(fb,'warn','Selecione uma opção válida de participação.'); return; }
 
+  form.dataset.submitting='1';
   const btn=document.getElementById('btnCadastro'); btn.disabled=true; const txt=btn.textContent; btn.textContent='Salvando...';
   let modo='local';
   try{
     const res = await DB.inserir('tui_cadastros', user);
     modo = res.modo;
-    localStorage.setItem(CHAVE_LOCAL, JSON.stringify(user));
-    mostrarFeedback(fb,'ok', modo==='online'
+    if(modo==='local') adicionarPendente('cadastro',user);
+    guardarLocal(CHAVE_LOCAL,user);
+    mostrarFeedback(fb, modo==='online'?'ok':'warn', modo==='online'
       ? '✅ <b>Cadastro salvo!</b> Seus dados foram registrados na base online da campanha.'
-      : '✅ <b>Cadastro salvo neste navegador.</b> (O banco online ainda não está configurado.)');
+      : '⚠️ <b>Cadastro salvo neste navegador.</b> Para a equipe receber, configure a base online.');
     showUser(user);
-    document.getElementById('signupForm').reset();
+    form.reset();
     document.getElementById('city').value='Itaquaquecetuba';
-    toast('Cadastro salvo! 💛');
+    toast(modo==='online'?'Cadastro salvo! 💛':'Cópia salva neste navegador. 💛');
   }catch(err){
     console.error(err);
-    localStorage.setItem(CHAVE_LOCAL, JSON.stringify(user));
-    mostrarFeedback(fb,'warn','⚠️ Não conseguimos enviar para a base online agora. Seu cadastro foi salvo neste navegador — tente novamente mais tarde ou fale pelo WhatsApp.');
-  }finally{ btn.disabled=false; btn.textContent=txt; }
+    const localOk=adicionarPendente('cadastro',user);
+    guardarLocal(CHAVE_LOCAL,user);
+    mostrarFeedback(fb,'warn', localOk
+      ? '⚠️ Não conseguimos confirmar o envio à base online. Uma cópia foi salva neste navegador. Antes de reenviar, confira o registro na área da equipe para evitar duplicidade.'
+      : '⚠️ Não conseguimos confirmar o envio nem salvar uma cópia local. Confira os dados e tente novamente quando a conexão estiver estável.');
+  }finally{ form.dataset.submitting='0'; btn.disabled=false; btn.textContent=txt; }
 });
 function showUser(u){
   const el=document.getElementById('savedUser');
@@ -371,48 +382,48 @@ document.querySelectorAll('input[name="itens"]').forEach(c=>c.addEventListener('
 }));
 
 document.getElementById('donationForm').addEventListener('submit', async e=>{
- e.preventDefault();
- const fb=document.getElementById('doacaoFeedback');
- fb.className='feedback'; fb.innerHTML='';
- const payload={
-    nome:document.getElementById('donor').value.trim(),
-    whatsapp:document.getElementById('phone').value.trim(),
+  e.preventDefault();
+  const form=e.currentTarget, fb=document.getElementById('doacaoFeedback');
+  fb.className='feedback'; fb.innerHTML='';
+  if(form.dataset.submitting==='1') return;
+  if(document.getElementById('donationWebsite').value) return;
+  const payload={
+    nome:document.getElementById('donor').value.trim().replace(/\s+/g,' '),
     itens:[...document.querySelectorAll('input[name="itens"]:checked')].map(x=>x.value),
     quantidade: document.getElementById('qty').value ? Number(document.getElementById('qty').value) : null,
     tamanho_fralda: document.getElementById('tamanhoFralda').value.trim() || null,
     observacao: document.getElementById('msg').value.trim() || null,
     origem:'site'
   };
-  if(payload.nome.length < 3){ mostrarFeedback(fb,'warn','Por favor, informe seu nome.'); document.getElementById('donor').focus(); return; }
+  const itensPermitidos=['Brinquedos novos','Brinquedos usados em bom estado','Livros infantis','Jogos e atividades','Fraldas descartáveis','Mamadeiras','Chupetas','Produtos de higiene básica','Itens de cuidados infantis'];
+  if(payload.nome.length < 3 || payload.nome.length > 120){ mostrarFeedback(fb,'warn','Informe seu nome (de 3 a 120 caracteres).'); document.getElementById('donor').focus(); return; }
   if(!payload.itens.length){ mostrarFeedback(fb,'warn','Escolha pelo menos um tipo de doação. 🧸'); return; }
+  if(payload.itens.some(i=>!itensPermitidos.includes(i))){ mostrarFeedback(fb,'warn','Há uma opção inválida selecionada. Atualize a página e tente novamente.'); return; }
+  if(payload.quantidade!==null && (!Number.isInteger(payload.quantidade) || payload.quantidade<1 || payload.quantidade>9999)){ mostrarFeedback(fb,'warn','A quantidade deve ser um número inteiro entre 1 e 9.999.'); document.getElementById('qty').focus(); return; }
+  if(payload.tamanho_fralda && (!payload.itens.includes('Fraldas descartáveis') || payload.tamanho_fralda.length>60)){ mostrarFeedback(fb,'warn','Confira o tamanho informado para as fraldas.'); return; }
+  if(payload.observacao && payload.observacao.length>800){ mostrarFeedback(fb,'warn','A observação pode ter no máximo 800 caracteres.'); return; }
 
- const btn=document.getElementById('btnDoar'); btn.disabled=true; const txt=btn.textContent; btn.textContent='Enviando...';
- let modo='local', falhou=false;
- try{
-   const res = await DB.inserir('tui_doacoes', payload);
-   modo = res.modo;
-   localStorage.setItem('tuiUltimaDoacao', JSON.stringify({...payload, data:new Date().toISOString()}));
- }catch(err){
-   console.error(err);
-   falhou = true;
-   localStorage.setItem('tuiUltimaDoacao', JSON.stringify({...payload, data:new Date().toISOString(), pendente:true}));
-   mostrarFeedback(fb,'warn','⚠️ Não foi possível salvar na base online agora (sem conexão?). Abrimos o WhatsApp — a equipe pode registrar sua doação por lá.');
- }finally{ btn.disabled=false; btn.textContent=txt; }
-
- if(!falhou){
-   mostrarFeedback(fb,'ok', modo==='online'
-     ? '✅ <b>Intenção registrada na base online!</b> Agora envie a mensagem no WhatsApp para combinar a entrega.'
-     : '✅ <b>Intenção registrada neste navegador.</b> Agora envie a mensagem no WhatsApp para combinar a entrega.');
- }
-
-  const texto = `Olá! Sou ${payload.nome}. Quero registrar uma doação para o T.U.I.\n\nItens: ${payload.itens.join(', ')}` +
-    `\nQuantidade aproximada: ${payload.quantidade ?? 'não informada'}` +
-    (payload.tamanho_fralda ? `\nTamanho das fraldas: ${payload.tamanho_fralda}` : '') +
-    `\nWhatsApp: ${payload.whatsapp || 'não informado'}\nObservação: ${payload.observacao || 'nenhuma'}`;
-  window.open(waLink(texto),'_blank');
-  toast('Intenção registrada! Confirmamos pelo WhatsApp. 💛');
-  document.getElementById('donationForm').reset();
-  campoFralda.style.display='none';
+  form.dataset.submitting='1';
+  const btn=document.getElementById('btnDoar'); btn.disabled=true; const txt=btn.textContent; btn.textContent='Enviando...';
+  let modo='local';
+  try{
+    const res = await DB.inserir('tui_doacoes', payload);
+    modo = res.modo;
+    if(modo==='local') adicionarPendente('doacao',payload);
+    guardarLocal('tuiUltimaDoacao',{...payload,data:new Date().toISOString()});
+    mostrarFeedback(fb,modo==='online'?'ok':'warn',modo==='online'
+      ? '✅ <b>Intenção registrada na base online!</b> A equipe da campanha poderá consultar seu registro.'
+      : '⚠️ <b>Intenção salva neste navegador.</b> Para aparecer na lista da equipe, configure a base online.');
+    toast(modo==='online'?'Intenção registrada na campanha. 💛':'Cópia salva neste navegador. 💛');
+    form.reset(); campoFralda.style.display='none';
+  }catch(err){
+    console.error(err);
+    const localOk=adicionarPendente('doacao',payload);
+    guardarLocal('tuiUltimaDoacao',{...payload,data:new Date().toISOString(),pendente:true});
+    mostrarFeedback(fb,'warn',localOk
+      ? '⚠️ Não conseguimos confirmar o envio à base online. Uma cópia foi salva neste navegador. Antes de reenviar, confira o registro na área da equipe para evitar duplicidade.'
+      : '⚠️ Não conseguimos confirmar o envio nem salvar uma cópia local. Confira os dados e tente novamente quando a conexão estiver estável.');
+  }finally{ form.dataset.submitting='0'; btn.disabled=false; btn.textContent=txt; }
 });
 </script>
 </body>

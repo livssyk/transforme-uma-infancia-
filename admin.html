@@ -133,7 +133,8 @@ async function carregar(){
   const el=document.getElementById('tabela'); const msg=document.getElementById('appFb');
   el.innerHTML='<div class="empty">Carregando...</div>'; msg.className='fb';
   try{
-    registros = await api(abaAtual, '?select=*&order=criado_em.desc&limit=1000');
+    const campos = abaAtual==='tui_doacoes' ? 'id,criado_em,nome,itens,quantidade,tamanho_fralda,observacao,origem' : 'id,criado_em,nome,email,cidade,perfil';
+    registros = await api(abaAtual, `?select=${campos}&order=criado_em.desc&limit=1000`);
     render();
   }catch(err){ el.innerHTML='<div class="empty">'+esc(err.message)+'</div>'; }
 }
@@ -150,23 +151,21 @@ function render(){
   if(!lista.length){ el.innerHTML='<div class="empty">Nenhum registro ainda.</div>'; return; }
 
   if(abaAtual==='tui_doacoes'){
-    el.innerHTML = `<table><thead><tr><th>Data</th><th>Nome</th><th>WhatsApp</th><th>Itens</th><th>Qtd.</th><th>Observação</th><th></th></tr></thead><tbody>${
+    el.innerHTML = `<table><thead><tr><th>Data</th><th>Nome</th><th>Itens</th><th>Qtd.</th><th>Observação</th><th></th></tr></thead><tbody>${
       lista.map(r=>`<tr>
         <td class="muted">${esc(dataBR(r.criado_em))}</td>
         <td><b>${esc(r.nome)}</b></td>
-        <td>${esc(r.whatsapp||'—')}</td>
         <td>${(r.itens||[]).map(i=>`<span class="tag">${esc(i)}</span>`).join('') || '—'}${r.tamanho_fralda?`<div class="muted">Fralda: ${esc(r.tamanho_fralda)}</div>`:''}</td>
         <td>${esc(r.quantidade ?? '—')}</td>
         <td class="muted">${esc(r.observacao||'')}</td>
         <td><button class="del" data-del="${esc(r.id)}">Excluir</button></td>
       </tr>`).join('')}</tbody></table>`;
   } else {
-    el.innerHTML = `<table><thead><tr><th>Data</th><th>Nome</th><th>E-mail</th><th>WhatsApp</th><th>Cidade</th><th>Perfil</th><th></th></tr></thead><tbody>${
+    el.innerHTML = `<table><thead><tr><th>Data</th><th>Nome</th><th>E-mail</th><th>Cidade</th><th>Perfil</th><th></th></tr></thead><tbody>${
       lista.map(r=>`<tr>
         <td class="muted">${esc(dataBR(r.criado_em))}</td>
         <td><b>${esc(r.nome)}</b></td>
         <td>${esc(r.email||'—')}</td>
-        <td>${esc(r.telefone||'—')}</td>
         <td>${esc(r.cidade||'—')}</td>
         <td><span class="tag">${esc(r.perfil||'—')}</span></td>
         <td><button class="del" data-del="${esc(r.id)}">Excluir</button></td>
@@ -177,8 +176,8 @@ function render(){
 function csv(){
   const lista=filtrados(); if(!lista.length){ alert('Nada para exportar.'); return; }
   const cols = abaAtual==='tui_doacoes'
-    ? ['criado_em','nome','whatsapp','itens','quantidade','tamanho_fralda','observacao','origem']
-    : ['criado_em','nome','email','telefone','cidade','perfil'];
+    ? ['criado_em','nome','itens','quantidade','tamanho_fralda','observacao','origem']
+    : ['criado_em','nome','email','cidade','perfil'];
   const linha = (arr)=> arr.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';');
   const conteudo = [linha(cols), ...lista.map(r=>linha(cols.map(c=> Array.isArray(r[c])? r[c].join(', ') : (c==='criado_em'? dataBR(r[c]) : r[c]))))].join('\r\n');
   const blob = new Blob(['\ufeff'+conteudo], {type:'text/csv;charset=utf-8'});
